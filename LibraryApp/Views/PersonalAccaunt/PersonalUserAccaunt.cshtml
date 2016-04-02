@@ -1,0 +1,44 @@
+﻿@model LibraryApp.Models.UserAccountModel
+@{
+    ViewBag.Title = "Здравствуйте, " + @Model.Login;
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+
+	<div class="col-sm-8">
+
+		<dl class="dl-horizontal">
+			<dt>Имя:</dt>
+			<dd>@Model.Name</dd>
+			<dt>Фамилия:</dt>
+			<dd>@Model.LastName</dd>
+			<dt>E-mail:</dt>
+			<dd>@Model.Email</dd>
+		</dl>
+	</div>
+
+    <div class="col-sm-offset-1 col-sm-3">
+        @if (!String.IsNullOrWhiteSpace(Model.AvatarUrl))
+        {
+            <div class="thumbnail">
+                <img src="~/Content/Image/@Model.AvatarUrl" alt="@Model.Login" class="img-responsive">
+            </div>
+        }
+        else
+        {
+            <div class="thumbnail">
+                <img src="~/Content/Image/AvaUserNotFound.jpg" alt="@Model.Login" class="img-responsive">
+            </div>
+        }
+    </div>
+
+</div>
+
+<p>
+	<a class="btn btn-default" href="/order/index/@Model.Id">Посмотреть заказы</a>
+	<a class="btn btn-danger" href="/personalaccaunt/exit">Выход</a>
+</p>
+

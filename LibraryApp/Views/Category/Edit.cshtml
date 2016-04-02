@@ -1,0 +1,29 @@
+﻿@model LibraryApp.Models.CategoryEditModel
+@{
+    ViewBag.Title = "Редактирование категории";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-6">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        </div>
+        <div class="col-sm-4">
+            <p class="form-control-static">@Html.ValidationMessageFor(m => m.Title)</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a class="btn btn-default" href="/category/index">Назад</a>
+        </div>
+    </div>
+}
+

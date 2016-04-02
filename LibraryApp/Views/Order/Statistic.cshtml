@@ -1,0 +1,40 @@
+﻿@model LibraryApp.Models.StatisticModel
+@{
+    ViewBag.Title = "Статистика";
+}
+
+<h1>@ViewBag.Title</h1>
+<hr />
+
+<div class="row">
+
+    <div class="col-sm-8">
+        <dl class="dl-horizontal">
+            <dt>Число пользователей:</dt>
+            <dd>@Model.UserCount</dd>
+            <dt>Число книг:</dt>
+            <dd>@Model.BookCount</dd>
+            <dt>Число авторов:</dt>
+            <dd>@Model.AuthorCount</dd>
+        </dl>       
+        <dl class="dl-horizontal">                
+                @foreach (var i in Model.AuthorBooks)
+                {                       
+                <dt>@i.AuthorName:</dt>
+                <dd>@i.BookCount</dd>
+                }                
+        </dl>
+        <dl class="dl-horizontal">
+            @foreach (var i in Model.CategoryBooks)
+            {
+                <dt>@i.CategoryTitle:</dt>
+                <dd>@i.BookCount</dd>
+            }
+        </dl>        
+    </div>
+
+    <div class="col-sm-6">
+        <a class="btn btn-success" href="/PersonalAccaunt/Authorization/">Назад</a>
+    </div>
+</div>
+

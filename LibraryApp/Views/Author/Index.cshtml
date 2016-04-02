@@ -1,0 +1,44 @@
+﻿@model LibraryApp.Models.AuthorListModel
+@{
+    ViewBag.Title = "Выберите автора";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+@if (Model.Role.Equals("admin"))
+{
+	<p>
+		<a href="/author/edit/0">Добавить автора</a>
+	</p>
+}
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Автор</th>
+            @if (Model.Role.Equals("admin"))
+            {
+                <td style="width: 1%"></td>
+                <td style="width: 1%"></td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model.Authors)
+        {
+            <tr>
+                <td><a href="/book/indexauthor/@c.Id">@c.Name</a></td>
+                @if (Model.Role.Equals("admin"))
+                {
+                <td>
+                    <a href="/author/edit/@c.Id" class="glyphicon glyphicon-edit"></a>
+                </td>
+                <td style="text-align:right">
+                    <a class="glyphicon glyphicon-trash" href="/author/remove/@c.Id"></a>       
+                </td>
+                }
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<LibraryApp.DAL.Order>
+@{
+    ViewBag.Title = "Заказы";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Номер заказа</th>
+            <th>Пользователь</th>
+            <th>Книга</th>
+            <th>Автор</th>
+            <th>Время</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td><p>@c.Id</p></td>
+                <td><p>@c.User.Login</p></td>
+                <td><p>@c.Book.Title</p></td>
+                <td><p>@c.Book.Author.Name</p></td>
+                <td><p>@c.Date</p></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<div class="col-sm-6">
+    <a class="btn btn-success" href="javascript:history.back();">Назад</a>
+</div>

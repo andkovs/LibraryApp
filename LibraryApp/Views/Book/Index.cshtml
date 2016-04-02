@@ -1,0 +1,52 @@
+﻿@model LibraryApp.Models.BookModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h1>@ViewBag.Title</h1>
+<hr />
+
+<div class="row">
+
+    <div class="col-sm-8">
+		
+		<dl class="dl-horizontal">
+			<dt>Автор:</dt>
+			<dd>@Model.Author</dd>
+			<dt>Год издания:</dt>
+			<dd>@Model.Year</dd>
+			<dt>Описание:</dt>
+			<dd>@Model.Description</dd>
+		</dl>
+    </div>
+
+    <div class="col-sm-offset-1 col-sm-3">
+        @if (!String.IsNullOrWhiteSpace(Model.CoverUrl))
+        {
+            <div class="thumbnail">
+                <img src="~/Content/Image/@Model.CoverUrl" alt="@Model.Title" class="img-responsive">
+            </div>
+        }
+        else
+        {
+            <div class="thumbnail">
+                <img src="~/Content/Image/BookNotFound.jpg" alt="@Model.Title" class="img-responsive">
+            </div>
+        }        
+    </div>
+
+</div>
+
+<p>
+	@if (Model.isDownload)
+	{
+		<a class="btn btn-success" href="/book/download/@Model.Id">Скачать книгу</a>
+	}
+	else if (Model.Role.Equals("user"))
+	{
+		<span class="danger">Эта книга уже есть в вашей библиотеке</span>
+	}
+	
+	<a class="btn btn-default" href="javascript:history.back();">К списку книг</a>
+</p>
+
